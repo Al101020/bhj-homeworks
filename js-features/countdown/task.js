@@ -1,10 +1,10 @@
-let spanTimer = Number(timer.innerHTML);
+let spanTimer = Number(document.getElementById('timer').textContent);
 let spanTimer_ID;
 
 function Timer() {
     spanTimer--;
-    console.log(spanTimer);
-    timer.innerHTML = spanTimer;
+
+    document.getElementById('timer').textContent = spanTimer;
 
     if (spanTimer == 0) {
         clearInterval(spanTimer_ID);
@@ -13,4 +13,3 @@ function Timer() {
 }
 
 spanTimer_ID = setInterval(Timer, 1000);
-

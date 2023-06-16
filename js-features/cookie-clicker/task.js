@@ -9,7 +9,7 @@ function changeSizes_plusOne() {
     let clickNow = new Date().getTime();
 
     if (clickNext !== 0) {
-        speed_click.textContent = (clickNow - clickNext)/1000;        
+        speed_click.textContent = (1 / ((clickNow - clickNext)/1000)).toFixed(2);        
     }
     clickNext = clickNow;
 
