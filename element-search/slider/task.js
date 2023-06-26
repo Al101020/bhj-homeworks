@@ -7,7 +7,6 @@ let ActivDivImage = null;
 let nextDivImage = null;
 
 function goLeft() {
-    console.log('Click');
     for(i = imglength - 1; i >= 0; i--){
         if(divImage[i].className == 'slider__item slider__item_active'){
             divImage[i].className = 'slider__item';
@@ -21,7 +20,6 @@ function goLeft() {
 }
 
 left_right[0].onclick = goLeft;
-
 
 function goRight() {
     for (i = 0; imglength > i; i++) {
@@ -41,6 +39,11 @@ left_right[1].onclick = goRight;
 
 
 
+
+
+
+
+// let divImage = Array.from(document.querySelectorAll('div.slider__items')[0].childNodes).filter((item) => item.className == 'slider__item' || item.className == 'slider__item slider__item_active' ); //;
 
 // Array.from(document.getElementsByClassName('slider__arrow slider__arrow_prev')).onclick = goLeft;
 // left.onclick = goLeft;
