@@ -25,6 +25,71 @@ class Game {
       При неправильном вводе символа - this.fail();
       DOM-элемент текущего символа находится в свойстве this.currentSymbol.
      */
+
+    const self = this; // Контекст класса будет лежать в self(без него success() не запустился)
+
+    let correctSymbol = 0;
+
+    let word = [];
+    let divWord = document.getElementsByClassName('word')[0].children;
+    for (let i = 0; i < divWord.length; i++) {
+      word.push(divWord[i].textContent);
+    }
+      
+    console.log(word); // слово
+
+    let symbol = document.getElementsByClassName('word')[0].childNodes[0].textContent;
+    console.log('символ которорый нужно нажать первым - ' + symbol);
+    
+    function pressKey(event){
+
+      if (symbol === event.key){
+        console.log('Символ нажат правильно - ' + event.key);
+        self.success();
+
+        correctSymbol = correctSymbol + 1;
+        console.log('счётчик правильных нажатий = ' + correctSymbol); //  счётчик правильных нажатий
+
+        symbol = word[correctSymbol];
+        console.log('Следующий символ нажимае - ' + word[correctSymbol]);
+
+        if(word.length === correctSymbol){
+          console.log(word.length + ' -= Последний символ. Выиграл =- ' + correctSymbol);
+
+          word = [];
+          divWord = document.getElementsByClassName('word')[0].children;
+          for (let i = 0; i < divWord.length; i++) {
+            word.push(divWord[i].textContent);
+          }
+
+          console.log(word); // слово
+
+          correctSymbol = 0;
+          
+          symbol = word[correctSymbol];
+          console.log('Следующий символ, следующего слова нажимае - ' + word[correctSymbol]);
+        }
+
+      } else if(symbol !== event.key){
+        console.log('Символ нажат НЕправильно - ' + event.key);
+        self.fail();
+
+        word = [];
+        divWord = document.getElementsByClassName('word')[0].children;
+        for (let i = 0; i < divWord.length; i++) {
+          word.push(divWord[i].textContent);
+        }
+
+        console.log(word); // слово
+
+        correctSymbol = 0;
+          
+        symbol = word[correctSymbol];
+        console.log('Следующий символ, следующего слова нажимае - ' + word[correctSymbol]);
+      }
+    }
+
+    document.addEventListener('keyup', pressKey);
   }
 
   success() {
