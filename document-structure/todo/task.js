@@ -2,25 +2,14 @@ const inputWindow = document.getElementById('task__input');
 const addButton = document.getElementById('tasks__add');
 const tasksList = document.getElementById('tasks__list');
 
-
-
 addButton.addEventListener('click', (e) => {
     e.preventDefault();
     if (inputWindow.value.trim() !== '') {
-        console.log('поле НЕ пустое');
-        
-        let newTaskTitle = document.createElement('div'); // создание 'div' (в переменной)
-        newTaskTitle.setAttribute('class', 'task__title'); // добавил атрибут класс='task__title' (в переменной)
-        newTaskTitle.textContent = inputWindow.value.trim();
-
-        let newTask = document.createElement('div'); // создание ещё 'div'
-        newTask.setAttribute('class', 'task'); // добавил атрибут класс='task' (в переменной)
-
-        newTask.appendChild(newTaskTitle); // вставили div с классом task__title в div с классом task (в переменной)
-
-        newTask.insertAdjacentHTML('beforeEnd', '<a href="#" class="task__remove">&times;</a>'); // вставили крестик закрыть
-
-        tasksList.appendChild(newTask); // добавили div с классом task в разметку(tasksList)
+        tasksList.insertAdjacentHTML('beforeEnd', '<div class="task"></div>'); // добавили первую пустую задачу
+        tasks = [...tasksList.querySelectorAll('div.task')]; // собрали все задачи в массив
+        tasks[tasks.length-1].insertAdjacentHTML('beforeEnd', '<div class="task__title"></div>'); // в последнюю задачу добавили div с классаом task__title
+        tasks[tasks.length-1].querySelector('div.task__title').textContent = inputWindow.value.trim(); // в последнюю задачу добавили название задачи
+        tasks[tasks.length-1].insertAdjacentHTML('beforeEnd', '<a href="#" class="task__remove">&times;</a>'); //// в последнюю задачу вставили крестик - закрыть
 
         const aClose = [...document.querySelectorAll('a.task__remove')];
 
