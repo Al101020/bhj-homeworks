@@ -19,7 +19,6 @@ for (let i = 0; i < product.length; i++) { // перебираем массив 
             product[i].querySelector('.product__quantity-value').textContent--
         };
     };
-
     btnPriductAdd[i].onclick = () => {
         let newCartProduct = document.createElement('div'); // создание 'div' (в переменной)
         newCartProduct.setAttribute('class', 'cart__product'); // добавил атрибут класс='cart__product' (в переменной)
@@ -32,30 +31,15 @@ for (let i = 0; i < product.length; i++) { // перебираем массив 
         newCartProduct.querySelector('div').setAttribute('class', 'cart__product-count'); // изменил атрибут класс='cart__product-count' (в переменной)
 
         countProduct = [...document.querySelectorAll('.cart__product')]; // массив[продуктов в карзине]
-        if (1 > countProduct.length) {
-            cartProducts.appendChild(newCartProduct); // добавляем товар в корзину
-            return;
-        }
-        
-        for (let index = 0; index < countProduct.length; index++) {
-            if (newCartProduct.dataset.id == countProduct[index].dataset.id) {
-                countProduct[index].querySelector('div').textContent = Number(countProduct[index].querySelector('div').textContent) + Number(newCartProduct.children[1].textContent);
+
+        let addItem = countProduct.find((el) => el.dataset.id == newCartProduct.dataset.id); // добовляемый товар в корзину
+
+        if (addItem) {
+            if (newCartProduct.dataset.id == countProduct[i].dataset.id) {
+                countProduct[i].querySelector('div').textContent = Number(countProduct[i].querySelector('div').textContent) + Number(newCartProduct.children[1].textContent);
                 return;
-            }          
+            }
         }
         cartProducts.appendChild(newCartProduct); // добавляем товар в корзину
-
-        // const productSearch = (el) => {
-        //     return newCartProduct.dataset.id == el.dataset.id;
-        // }
-
-        // if (undefined) {
-        //     console.log('undefined');
-        // } else if (newCartProduct.dataset.id == countProduct.find(productSearch).dataset.id) {
-        //     countProduct.find(productSearch).querySelector('div').textContent = Number(countProduct[i].querySelector('div').textContent) + Number(newCartProduct.querySelector('div').textContent);
-        //     // console.log(newCartProduct.querySelector('div'));
-        //     return;
-        // }
-        // cartProducts.appendChild(newCartProduct); // добавляем товар в корзину
     }
 };
