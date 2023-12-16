@@ -19,6 +19,7 @@ for (let i = 0; i < product.length; i++) { // перебираем массив 
             product[i].querySelector('.product__quantity-value').textContent--
         };
     };
+
     btnPriductAdd[i].onclick = () => {
         let newCartProduct = document.createElement('div'); // создание 'div' (в переменной)
         newCartProduct.setAttribute('class', 'cart__product'); // добавил атрибут класс='cart__product' (в переменной)
@@ -31,12 +32,11 @@ for (let i = 0; i < product.length; i++) { // перебираем массив 
         newCartProduct.querySelector('div').setAttribute('class', 'cart__product-count'); // изменил атрибут класс='cart__product-count' (в переменной)
 
         countProduct = [...document.querySelectorAll('.cart__product')]; // массив[продуктов в карзине]
-
-        let addItem = countProduct.find((el) => el.dataset.id == newCartProduct.dataset.id); // добовляемый товар в корзину
-
+        let addItem = countProduct.find((el) => {return el.dataset.id == newCartProduct.dataset.id}); // добовляемый товар в корзину(проверяем добовляемый товар == есть ли в корзине) 
+        
         if (addItem) {
-            if (newCartProduct.dataset.id == countProduct[i].dataset.id) {
-                countProduct[i].querySelector('div').textContent = Number(countProduct[i].querySelector('div').textContent) + Number(newCartProduct.children[1].textContent);
+            if (newCartProduct.dataset.id == addItem.dataset.id) {
+                addItem.querySelector('div').textContent = Number(addItem.querySelector('div').textContent) + Number(newCartProduct.children[1].textContent);
                 return;
             }
         }

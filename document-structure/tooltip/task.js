@@ -5,7 +5,6 @@ for (let i = 0; i < as.length; i++) {
     let hint = document.createElement('div'); // создал переменную с тегом 'div' - продсказку
     hint.setAttribute('class', 'tooltip'); // добавил атрибут класс='tooltip' (в переменной)
     hint.setAttribute('data-position', 'top'); // добавил атрибут data-position='top' (в переменной)
-    hint.setAttribute('style', 'position: absolute;'); // добавил атрибут 'style'со значением 'position: absolute;'
     hint.textContent = as[i].title; // добавил видимый текст в тег (в переменной)
 
     as[i].insertAdjacentElement('afterEnd', hint); // добавляю за элементом "div" с текстом из title
